@@ -1,4 +1,2 @@
-# .github
-Default metadata files for repos in this org.
+# Tchap Sydent
 
-If you're seeing this readme in your project, your project is configured wrong.
