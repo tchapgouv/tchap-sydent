@@ -3,7 +3,7 @@ name: Docker
 on:
   push:
     branches: 
-      - 'guillaumev/docker_ci_build'
+      - 'main'
     tags:
       - v*
 
