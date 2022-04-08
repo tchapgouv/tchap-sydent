@@ -1,4 +1,9 @@
-# .github
-Default metadata files for repos in this org.
+# Tchap Sydent
 
-If you're seeing this readme in your project, your project is configured wrong.
+This repo only hosts Github Action CI to build the docker image from the [main sydent repo](https://github.com/matrix-org/sydent/tree/dinsic).
+
+
+```
+docker login ghcr.io --username <github_username> --password-stdin
+docker pull ghcr.io/tchapgouv/tchap-sydent:latest
+```
