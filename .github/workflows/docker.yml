@@ -2,13 +2,13 @@ name: Docker
 
 on:
   push:
-    tags:
-      - v*
+  schedule:
+  # every day
+    - cron: '0 1 * * *'
 
 env:
   REGISTRY: ghcr.io
   REGISTRY_BASE_PATH: ghcr.io/${{ github.repository }}
-  BASE_TAG: ${{ github.ref_name }}
 
 jobs:
   build:
@@ -23,6 +23,13 @@ jobs:
         with:
           repository: 'matrix-org/sydent'
           ref: 'dinsic'
+
+      - name: Calculate docker image tag
+        id: set-tag
+        run: |
+          git fetch -t
+          tag=$( git describe --tags --always)
+          echo "::set-output name=tag::$tag"
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1 
@@ -44,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: "${{ env.REGISTRY_BASE_PATH }}:${{ steps.set-tag.outputs.tag }}, ${{ env.REGISTRY_BASE_PATH }}:latest"
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
           push: true

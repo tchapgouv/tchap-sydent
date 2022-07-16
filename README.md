@@ -1,6 +1,8 @@
 # Tchap Sydent
 
-This repo only hosts Github Action CI to build the docker image from the [main sydent repo](https://github.com/matrix-org/sydent/tree/dinsic).
+[![Docker](https://github.com/tchapgouv/tchap-sydent/actions/workflows/docker.yml/badge.svg)](https://github.com/tchapgouv/tchap-sydent/actions/workflows/docker.yml)
+
+This repo only hosts Github Action CI to build the docker image from the [main sydent repo branch dinsic](https://github.com/matrix-org/sydent/tree/dinsic).
 
 ## Pull this image
 
@@ -9,8 +11,8 @@ docker login ghcr.io --username <github_username> --password-stdin
 docker pull ghcr.io/tchapgouv/tchap-sydent:latest
 ```
 
-## Create new release
+## Release
 
-- Create a new tag, in semantic versionning format `vX.X.X`
+Docker image is build daily if new tag is detected on sydent repo on `dinsic` branch
 
-It will pull matrix-sydent/dinsic and create a new docker image.
+Two images are created: `tchap-sydent:latest` and `tchap-sydent:tag_version`
